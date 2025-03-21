@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Clock</title>
+    <title>Live Clock - Malaysia Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:256px;height:174px;" src="https://www.clocklink.com/html5embed.php?clock=046&timezone=GMT0800&color=blue&size=256&Title=&Message=&Target=&From=2025,1,1,0,0,0&Color=blue"></iframe>
+    <h1>Live Clock</h1>
+    <div id="date-time">
+        <div id="date"></div>
+        <div id="day"></div>
+    </div>
+    <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:91px;height:30px;" src="https://www.clocklink.com/html5embed.php?clock=008&timezone=GMT0800&color=black&size=91&Title=&Message=&Target=&From=2025,1,1,0,0,0&Color=black"></iframe>
+    
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dayOptions = { weekday: 'long' };
+            document.getElementById('date').innerText = now.toLocaleDateString('en-US', options);
+            document.getElementById('day').innerText = now.toLocaleDateString('en-US', dayOptions);
+        }
+        updateDateTime(); // Call the function to set the initial date and day
+        setInterval(updateDateTime, 60000); // Update every minute
+    </script>
 </body>
 </html>
